@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 import os
 import sys
 
-path = '/home/IUwan1n/cardquest-masterapp/projectsite'
+path = '/home/MichaelJoshuaCalan/cardquest-masterapp/projectsite'
 if path not in sys.path:
     sys.path.insert(0, path)
 
