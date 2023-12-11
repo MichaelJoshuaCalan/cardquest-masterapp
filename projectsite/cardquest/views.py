@@ -39,6 +39,3 @@ class CollectionListView(ListView):
         return context
 
 # Create your views here.
-
-
-
