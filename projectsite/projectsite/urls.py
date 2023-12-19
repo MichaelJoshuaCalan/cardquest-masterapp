@@ -16,17 +16,43 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from cardquest.views import HomePageView, TrainerList, PokemonCardList, CollectionListView
+from cardquest.views import (
+    HomePageView, 
+    TrainerList,TrainerCreateView, TrainerUpdateView, TrainerDeleteView,  
+    PokemonCardList,PokemonCreateView,PokemonUpdateView,PokemonDeleteView,
+    CollectionListView, CollectionCreateView, CollectionUpdateView, CollectionDeleteView
+)
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='home'),
+    
     path('trainers/', TrainerList.as_view(), name='trainer-list'),
+    path('trainer_list/add/', TrainerCreateView.as_view(), name='trainer-add'),
+    path('trainer_list/<pk>/', TrainerUpdateView.as_view(), name='trainer-update'),
+    path('trainers/delete/<int:pk>/', TrainerDeleteView.as_view(), name='trainer-delete'),
+    
+    
     path('pokemon-cards/', PokemonCardList.as_view(), name='pokemon-cards'),
+    path('pokemoncard_list/add', PokemonCreateView.as_view(), name='pokemon_add'),
+    path('pokemon-edit/<int:pk>/', PokemonUpdateView.as_view(), name='pokemon_edit'),
+    path('pokemon-delete/<int:pk>/', PokemonDeleteView.as_view(), name='pokemon_delete'),
+    
+    
+    
+    
+
+    
     path('collection/', CollectionListView.as_view(), name='collection'),
-    # Add other paths for your views as needed
+    path('collection_list/add/', CollectionCreateView.as_view(), name='collection_add'),
+    path('collection-edit/<int:pk>/', CollectionUpdateView.as_view(), name='collection_edit'),
+    path('collection-delete/<int:pk>/', CollectionDeleteView.as_view(), name='collection_delete'),
+    
+    
+    
+    
 ]
 
 # Static files serving configuration

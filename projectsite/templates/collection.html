@@ -23,34 +23,38 @@
     </section>
 
     <!--COLLECTION-->
+    <a href="{% url "collection_add" %}" class="btn btn-outline-primary">Add New Collection</a>
+    <br>
     <main>
-    <section class="collection-container">
-      <table class="styled-table">
-        <tbody>
-          <tr>
-            <th>Trainer</th>
-            <th>Pokemon Card</th>
-            <th>Collection Date</th>
-          </tr>
+      <section class="collection-container">
+        <table class="styled-table">
+          <tbody>
+            <tr>
+              <th>Trainer</th>
+              <th>Pokemon Card</th>
+              <th>Collection Date</th>
+              <th>Action</th>
+            </tr>
 
-          <tr>
-            <td>Ash</td>
-            <td>Pikachu</td>
-            <td>2023-01-23</td>
-          </tr>
-          <tr>
-            <td>Ash</td>
-            <td>Pikachu</td>
-            <td>2023-01-23</td>
-          </tr>
-          <tr>
-            <td>Ash</td>
-            <td>Pikachu</td>
-            <td>2023-01-23</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+            {% for object in object_list %}
+            <tr>
+              <td>{{ object.trainer }}</td>
+              <td>{{ object.card }}</td>
+              <td>{{ object.collection_date }}</td>
+              <td>
+                <a href="{% url 'collection_edit' pk=object.id %}">Edit</a>
+                <a href="{% url 'collection_delete' pk=object.id %}">Delete</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4">No Collection</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% include 'includes/pagination.html' %}
+      </section>
   </main>
   {% include 'includes/footer.html' %}
   </body>
